@@ -1,0 +1,50 @@
+This Python code is a simple script that uses the `requests` library to send an HTTP GET request to a specified URL and retrieve the content of the web page. Let's break down the code step by step:
+
+1. Import the `requests` library:
+   ```python
+   import requests
+   ```
+   This line imports the `requests` module, which is a popular Python library for making HTTP requests.
+
+2. Get a URL from the user:
+   ```python
+   url = input("Enter any URL") #for example "https://www.geeksforgeeks.org"
+   ```
+   The `input` function is used to get a URL from the user. The entered URL is stored in the variable `url`.
+
+3. Send an HTTP GET request to the specified URL:
+   ```python
+   try:
+       response = requests.get(url)
+   ```
+   The code uses a `try` block to catch any exceptions that might occur during the HTTP request. The `requests.get()` function is used to send an HTTP GET request to the specified URL, and the response is stored in the `response` variable.
+
+4. Check the status code of the response:
+   ```python
+       if response.status_code == 200:
+   ```
+   The code checks if the HTTP status code in the response is 200, which indicates a successful request.
+
+5. Process the HTML content:
+   ```python
+           html_content = response.text
+           # Process the HTML content as needed
+           print(html_content)
+   ```
+   If the status code is 200, the HTML content of the web page is retrieved from the response using `response.text` and stored in the `html_content` variable. The content is then printed to the console.
+
+6. Handle unsuccessful requests:
+   ```python
+       else:
+           print("Failed to retrieve data. Status code:", response.status_code)
+   ```
+   If the status code is not 200, the code prints an error message along with the HTTP status code.
+
+7. Handle exceptions:
+   ```python
+   except requests.exceptions.RequestException as e:
+       print("Error occurred:", e)
+   ```
+   The `except` block is used to catch any exceptions that might occur during the HTTP request. If an exception occurs, an error message is printed.
+
+In summary, this script allows the user to input a URL, sends an HTTP GET request to that URL, and prints the HTML content of the web page if the request is successful. If there are any issues with the request or if the status code indicates failure, appropriate error messages are displayed.
